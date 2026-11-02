@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="wochenplan-id" content="0b8f1ae6-6f5c-483d-944f-a3567dc47eb0">
+  <title>Mein Wochenplan</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="wochen-seite">
+
+  
+  <aside id="datei-leiste" class="datei-leiste" hidden>
+    <p id="github-status" role="status">Noch nicht mit GitHub verbunden.</p>
+    <button id="github-speichern" type="button">Auf GitHub speichern</button>
+    <button id="github-neuladen" type="button" class="sekundaer">GitHub-Stand laden</button>
+    <button id="github-download" type="button" class="sekundaer">HTML-Sicherung</button>
+    <button id="github-trennen" type="button" class="sekundaer">GitHub trennen</button>
+    <details id="github-einstellungen" class="github-einstellungen">
+      <summary>GitHub-Einstellungen</summary>
+      <form id="github-formular" class="github-formular" autocomplete="off">
+        <div><label for="github-owner">GitHub-Name</label><input id="github-owner" required placeholder="dbading" autocapitalize="none" spellcheck="false"></div>
+        <div><label for="github-repo">Repository</label><input id="github-repo" required placeholder="Wochenplanner" autocapitalize="none" spellcheck="false"></div>
+        <div><label for="github-branch">Branch</label><input id="github-branch" required placeholder="main" autocapitalize="none" spellcheck="false"></div>
+        <div><label for="github-path">HTML-Dateipfad im Repository</label><input id="github-path" required placeholder="index.html" autocapitalize="none" spellcheck="false"></div>
+        <div class="breit"><label for="github-token">GitHub-Token · nur für diesen geöffneten Tab</label><input id="github-token" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Nur hier eingeben – nie in die HTML-Datei schreiben"></div>
+        <p class="breit hinweis">Öffentlich lesen geht ohne Token. Zum Speichern braucht dein Token „Contents: Read and write“ für dieses Repository. Nach dem Verbinden wird das Eingabefeld geleert.</p>
+        <div class="breit"><button id="github-verbinden" type="submit">Verbinden / Stand prüfen</button></div>
+      </form>
+    </details>
+  </aside>
+  <div id="kalender-bereich" hidden></div>
+  <template id="kalender-vorlage">
+  
+  <div id="wochen-inhalt">
+    <select hidden class="tag-auswahl" aria-label="Tagesvorlage"><option value="woche">Noch kein Tag</option><option value="tag-0">Montag</option><option value="tag-1">Dienstag</option><option value="tag-2">Mittwoch</option><option value="tag-3">Donnerstag</option><option value="tag-4">Freitag</option><option value="tag-5">Samstag</option><option value="tag-6">Sonntag</option></select>
+    <header class="journal-kopf">
+      <span>Mein Wochenplan</span>
+      <button id="abmelden" class="button-hell" type="button">Abmelden</button>
+    </header>
+    <main class="journal">
+      <header class="journal-titel">
+        <p class="klein">PLATZ FÜR EURE WOCHE</p>
+        <h1>Mein Wochenplan</h1>
+        <div class="wochen-auswahl">
+          <div><label for="kalenderwoche">Kalenderwoche</label><select id="kalenderwoche"></select></div>
+          <div><label for="kalenderjahr">Jahr</label><select id="kalenderjahr"></select></div>
+        </div>
+        <p id="wochen-zeitraum" class="wochen-datum"></p>
+        <button id="ansicht-wechseln" class="ansicht-knopf" type="button" aria-pressed="false">Spaltenansicht</button>
+      </header>
+
+      <div class="eintrag-werkzeug">
+        <button id="eintrag-oeffnen" type="button" aria-expanded="false" aria-controls="eintrag-formular"><span aria-hidden="true">＋</span> Stichpunkt hinzufügen</button>
+      </div>
+      <form id="eintrag-formular" class="eintrag-formular" hidden>
+        <h2>Neuer Stichpunkt</h2>
+        <label for="eintrag-person">Für wen?</label>
+        <select id="eintrag-person" required>
+          <option value="a">○ Marisa</option>
+          <option value="b">● Dani</option>
+          <option value="beide">– Beide</option>
+        </select>
+        <label for="eintrag-ziel">Wann?</label>
+        <select id="eintrag-ziel" required>
+          <option value="woche">To Do</option>
+          <option value="tag-0">Montag</option>
+          <option value="tag-1">Dienstag</option>
+          <option value="tag-2">Mittwoch</option>
+          <option value="tag-3">Donnerstag</option>
+          <option value="tag-4">Freitag</option>
+          <option value="tag-5">Samstag</option>
+          <option value="tag-6">Sonntag</option>
+        </select>
+        <label for="eintrag-text">Beschreibung</label>
+        <textarea id="eintrag-text" rows="3" maxlength="300" placeholder="Was steht an?" required></textarea>
+        <p id="eintrag-fehler" class="fehler" role="alert"></p>
+        <div class="formular-aktionen">
+          <button type="submit">Hinzufügen</button>
+          <button id="eintrag-abbrechen" class="button-hell" type="button">Abbrechen</button>
+        </div>
+      </form>
+      <p id="eintrag-status" class="todo-hinweis" role="status"></p>
+
+      <!-- Ein Termin ist ein li-Element. a = Person A, b = Person B, beide = gemeinsam. -->
+      <div id="wochentage" class="wochentage">
+        <section class="tag" aria-labelledby="titel-0">
+          <h2 id="titel-0">Montag</h2>
+          <ul id="tag-0" class="bullet-liste">
+            
+            
+            
+            
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-1">
+          <h2 id="titel-1">Dienstag</h2>
+          <ul id="tag-1" class="bullet-liste">
+            
+            
+            
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-2">
+          <h2 id="titel-2">Mittwoch</h2>
+          <ul id="tag-2" class="bullet-liste">
+            
+            
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-3">
+          <h2 id="titel-3">Donnerstag</h2>
+          <ul id="tag-3" class="bullet-liste">
+
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-4">
+          <h2 id="titel-4">Freitag</h2>
+          <ul id="tag-4" class="bullet-liste">
+
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-5">
+          <h2 id="titel-5">Samstag</h2>
+          <ul id="tag-5" class="bullet-liste">
+
+          </ul>
+        </section>
+        <section class="tag" aria-labelledby="titel-6">
+          <h2 id="titel-6">Sonntag</h2>
+          <ul id="tag-6" class="bullet-liste">
+
+          </ul>
+        </section>
+      </div>
+
+      <section class="wochen-todos" aria-labelledby="todo-titel">
+        <h2 id="todo-titel">To Do</h2>
+        <p class="todo-hinweis">Was noch keinen festen Tag hat. Wähle einen Tag, um es einzuplanen.</p>
+        <ul id="woche" class="bullet-liste">
+          
+          
+          
+        </ul>
+        <p id="todos-leer" class="leer-hinweis" hidden>Alle Wochen-To-dos sind eingeplant.</p>
+        <p id="speicher-hinweis" class="todo-hinweis" role="status"></p>
+      </section>
+
+      <footer class="legende" aria-labelledby="legenden-titel">
+        <h2 id="legenden-titel">Legende</h2>
+        <!-- Hier kannst du Person A und Person B durch eure Namen ersetzen.
+             Passe auch die aria-label-Texte bei den Bullets entsprechend an. -->
+        <ul>
+          <li><span class="bullet a" aria-hidden="true"></span>Marisa</li>
+          <li><span class="bullet b" aria-hidden="true"></span>Dani</li>
+          <li><span class="bullet beide" aria-hidden="true"></span>M + D</li>
+        </ul>
+      </footer>
+    </main>
+  </div>
+  
+
+
+</template>
+  <!-- Hier stehen alle Termine. Beim Speichern wird ausschließlich dieser Datenblock ersetzt. -->
+  <script id="kalender-daten" type="application/json">
+{}
+</script>
+  <script id="github-konfiguration" type="application/json">
+{
+  "owner": "dbading",
+  "repo": "Web-Wochenplanner",
+  "branch": "main",
+  "path": "wochenuebersicht.html"
+}
+</script>
+  
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* 1. Grundgestaltung – Farben hier zentral ändern */
+:root {
+  --hintergrund: #f5f5ef;
+  --text: #253a32;
+  --akzent: #365d48;
+  --linie: #e4e7dd;
+  --weiss: #ffffff;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--hintergrund); color: var(--text); font-family: Arial, sans-serif; line-height: 1.5; }
+h1, h2, p { margin-top: 0; }
+h1 { font-size: clamp(36px, 5vw, 58px); line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px; }
+h2 { font-size: 18px; margin: 0; }
+a { color: inherit; }
+button, input { font: inherit; }
+button { border: 0; border-radius: 9px; background: var(--akzent); color: white; padding: 14px 20px; cursor: pointer; }
+button:hover { filter: brightness(0.93); }
+button:focus-visible, a:focus-visible, .tabellen-scroll:focus-visible { outline: 3px solid #71967b; outline-offset: 4px; }
+.logo { display: inline-grid; place-items: center; width: 45px; height: 45px; border-radius: 13px; background: var(--akzent); color: white; font-size: 25px; font-weight: bold; }
+.klein { font-size: 11px; font-weight: bold; letter-spacing: 1.8px; color: #5e7263; }
+.beschreibung { color: #657266; font-size: 16px; }
+
+/* 2. Passwortseite */
+.login-seite { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+.login-karte { width: 100%; max-width: 470px; padding: 44px; background: var(--weiss); border: 1px solid var(--linie); border-radius: 22px; box-shadow: 0 20px 70px #253a3209; }
+.login-karte .logo { margin-bottom: 35px; }
+.login-karte .klein { margin-bottom: 16px; }
+.login-karte h1 { font-size: 46px; }
+form { margin-top: 30px; }
+label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 9px; }
+input { width: 100%; padding: 14px; border: 1px solid #bdc8bc; border-radius: 9px; background: #fafbf7; }
+input:focus { outline: 2px solid var(--akzent); outline-offset: 2px; }
+form button { width: 100%; display: flex; justify-content: space-between; }
+.fehler { color: #9e352f; font-size: 13px; margin: 10px 0; }
+.fehler:empty { display: none; }
+form button { margin-top: 16px; }
+.fussnote { margin: 30px 0 0; font-size: 12px; color: #687367; }
+
+/* 3. Wochenplan im Bullet-Journal-Stil */
+#wochen-seite { background: #fffefa; color: #242424; }
+[hidden] { display: none !important; }
+.journal-kopf { max-width: 1400px; margin: auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 13px; }
+.button-hell, .ansicht-knopf { background: transparent; color: #444; border: 1px solid #d7d7cf; font-size: 13px; padding: 9px 14px; }
+.journal { max-width: 620px; margin: 20px auto 0; padding: 0 28px 40px; }
+.journal-titel { text-align: center; padding: 20px 0 38px; }
+.journal h1 { font-family: Georgia, serif; font-size: clamp(32px, 7vw, 44px); font-weight: normal; letter-spacing: -1px; margin-bottom: 12px; }
+.journal .klein { color: #707066; font-size: 10px; }
+.wochen-datum { color: #6b6b62; font-size: 13px; margin-bottom: 22px; }
+.journal h2 { font-family: Georgia, serif; font-size: 23px; font-weight: normal; text-align: center; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; margin-bottom: 24px; }
+.tag { padding: 25px 0 30px; border-top: 1px solid #e7e5dd; min-width: 0; }
+.bullet-liste { list-style: none; padding: 0; margin: 0; }
+.bullet-liste li { display: flex; align-items: flex-start; gap: 14px; margin: 15px 0; line-height: 1.6; overflow-wrap: anywhere; }
+/* Die Symbole sind absichtlich schwarz und unabhängig von Farben erkennbar. */
+.bullet { flex: 0 0 9px; width: 9px; height: 9px; margin-top: 8px; display: inline-block; }
+.bullet.a { border: 1.5px solid #222; border-radius: 50%; }
+.bullet.b { border-radius: 50%; background: #222; }
+.bullet.beide { height: 0; border-top: 1.5px solid #222; margin-top: 12px; }
+/* Auch leere Tage behalten etwas Platz für spätere Termine. */
+.tag .bullet-liste:empty { min-height: 22px; }
+.wochen-todos { border-top: 1px solid #aaa99e; padding-top: 35px; margin-top: 15px; }
+.todo-hinweis, .leer-hinweis { color: #6b6b62; font-size: 13px; }
+.todo-hinweis { text-align: center; }
+.aufgabe-text { min-width: 0; flex: 1; }
+.tag-auswahl { display: block; max-width: 100%; margin-top: 5px; padding: 6px 8px; border: 1px solid #d7d7cf; border-radius: 5px; background: transparent; color: #55554c; font: inherit; font-size: 12px; }
+.tag-auswahl:focus-visible { outline: 2px solid #365d48; outline-offset: 3px; }
+.legende { margin-top: 40px; padding-top: 25px; border-top: 1px solid #e7e5dd; }
+.legende h2 { font-size: 19px; }
+.legende ul { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px 26px; list-style: none; padding: 0; font-size: 13px; }
+.legende li { display: flex; align-items: center; gap: 9px; }
+.legende .bullet { margin-top: 0; }
+
+/* 4. Alternative Ansicht: dieselben Inhalte in mehreren Spalten */
+.journal.spaltenansicht { max-width: 1400px; }
+.spaltenansicht .wochentage { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+.spaltenansicht .tag { padding: 24px 0; }
+.spaltenansicht .wochen-todos, .spaltenansicht .legende { max-width: 560px; margin-left: auto; margin-right: auto; }
+@media (min-width: 800px) {
+  .spaltenansicht .wochentage { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 1200px) {
+  .spaltenansicht .wochentage { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+  .spaltenansicht .tag h2 { font-size: 20px; }
+  .spaltenansicht .bullet-liste li { font-size: 14px; gap: 10px; }
+}
+@media (max-width: 600px) {
+  .login-karte { padding: 28px; }
+  .login-karte h1 { font-size: 39px; }
+  .journal-kopf { padding: 16px 22px; }
+  .journal { margin-top: 0; padding-left: 24px; padding-right: 24px; }
+  .spaltenansicht .wochentage { gap: 0 20px; }
+  .spaltenansicht .tag h2 { font-size: 20px; }
+  .spaltenansicht .bullet-liste li { font-size: 14px; gap: 9px; }
+}
+
+/* 5. Neue Stichpunkte eingeben */
+.eintrag-werkzeug { text-align: center; margin-bottom: 22px; }
+.eintrag-formular { margin: 0 auto 28px; padding: 24px; border: 1px solid #deddd3; border-radius: 10px; background: #f7f7f0; max-width: 560px; }
+.eintrag-formular h2 { margin-bottom: 25px; }
+.eintrag-formular label { margin: 16px 0 7px; }
+.eintrag-formular select, .eintrag-formular textarea { width: 100%; padding: 12px; border: 1px solid #bdc8bc; border-radius: 7px; background: #fffefa; color: #242424; font: inherit; }
+.eintrag-formular textarea { resize: vertical; }
+.eintrag-formular select:focus-visible, .eintrag-formular textarea:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+.eintrag-formular .formular-aktionen { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.eintrag-formular button { width: auto; margin: 0; display: inline-block; }
+#eintrag-status:empty { display: none; }
+
+/* 6. Tagesauswahl nur auf Wunsch einblenden */
+.aufgabe-text { position: relative; padding-right: 38px; }
+.tag-pfeil { position: absolute; right: 0; top: -5px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; background: transparent; color: #6b6b62; font-size: 21px; border-radius: 6px; }
+.tag-pfeil:hover, .tag-pfeil[aria-expanded="true"] { background: #eeeee6; color: #242424; }
+
+/* 7. Dropdown direkt am Pfeil, ohne zusätzliche Auswahlbox */
+.tag-dropdown { position: absolute; right: 0; top: 32px; z-index: 10; width: min(210px, calc(100vw - 48px)); padding: 5px; border: 1px solid #deddd3; border-radius: 9px; background: #fffefa; box-shadow: 0 8px 24px #00000016; }
+.tag-dropdown button { display: block; width: 100%; text-align: left; padding: 10px 12px; border-radius: 5px; background: transparent; color: #242424; font-size: 14px; }
+.tag-dropdown button:hover, .tag-dropdown button:focus-visible { background: #eeeee6; }
+.tag-dropdown button[aria-pressed="true"] { background: #e8eddf; font-weight: bold; }
+
+/* 8. Erledigte Einträge und Aktionen */
+.ist-erledigt .aufgabe-text > span { text-decoration: line-through; color: #77776e; }
+.tag-dropdown .eintrag-aktion { border-top: 1px solid #deddd3; margin-top: 5px; border-radius: 0; }
+.tag-dropdown .eintrag-loeschen { color: #9e352f; }
+
+/* 9. Griff zum Sortieren innerhalb derselben Liste */
+.sortiergriff { flex: 0 0 30px; display: grid; place-items: center; width: 30px; height: 34px; margin-top: -5px; padding: 0; border: 0; border-radius: 5px; background: transparent; color: #85857b; font-size: 17px; cursor: grab; touch-action: none; user-select: none; }
+.sortiergriff:hover { background: #eeeee6; }
+.wird-sortiert { opacity: 0.55; }
+.wird-sortiert .sortiergriff { cursor: grabbing; }
+.bullet-liste li { position: relative; gap: 10px; }
+.sortierziel-vor::before, .sortierziel-nach::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: var(--akzent); pointer-events: none; }
+.sortierziel-vor::before { top: -8px; }
+.sortierziel-nach::after { bottom: -8px; }
+
+/* 10. Kalenderwoche und Jahr auswählen */
+.wochen-auswahl { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 20px 0 12px; }
+.wochen-auswahl label { font-size: 12px; font-weight: normal; color: #6b6b62; margin-bottom: 6px; }
+.wochen-auswahl select { font: inherit; padding: 9px 14px; min-width: 115px; border: 1px solid #d7d7cf; border-radius: 7px; color: inherit; background: transparent; }
+.wochen-auswahl select:focus-visible { outline: 2px solid var(--akzent); outline-offset: 2px; }
+
+/* Datum unter dem jeweiligen Wochentag */
+.tages-datum { display: block; text-align: center; margin: -14px 0 24px; color: #6b6b62; font-size: 12px; font-weight: normal; }
+
+/* Lokaler Speicherstatus */
+.db-leiste { padding: 12px 20px; margin: 12px auto; max-width: 1400px; background: #eeeee6; font-size: 13px; }
+.db-leiste p { margin: 0 0 8px; }
+.db-leiste button, .db-leiste a { display: inline-block; padding: 7px 10px; margin: 4px 8px 4px 0; background: #fffefa; color: #333; border: 1px solid #d7d7cf; border-radius: 6px; font-size: 12px; }
+.db-leiste label { display: inline-block; font-size: 12px; font-weight: normal; }
+.db-leiste input { width: auto; max-width: 220px; padding: 4px; font-size: 12px; }
+
+/* Datei direkt im Browser speichern */
+[hidden] { display: none !important; }
+.datei-leiste { padding: 12px 20px; margin: 12px auto; max-width: 1400px; background: #eeeee6; font-size: 13px; }
+.datei-leiste p { margin: 0 0 8px; }
+.datei-leiste button { padding: 9px 12px; margin: 4px 6px 4px 0; font-size: 12px; }
+.datei-leiste .sekundaer { background: #fffefa; border: 1px solid #d7d7cf; color: #333; }
+
+
+/* GitHub-Verbindung */
+.github-einstellungen { margin-top: 10px; }
+.github-einstellungen summary { cursor: pointer; font-weight: bold; padding: 8px 0; }
+.github-formular { margin: 12px 0 0; max-width: 850px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+.github-formular label { font-size: 12px; margin-bottom: 4px; }
+.github-formular input { background: #fffefa; }
+.github-formular .breit { grid-column: 1 / -1; }
+.github-formular .hinweis { font-size: 12px; color: #555; margin-bottom: 0; }
+.github-formular button { width: auto; display: inline-block; margin: 0; }
+@media (max-width: 600px) { .github-formular { grid-template-columns: 1fr; } }
+
